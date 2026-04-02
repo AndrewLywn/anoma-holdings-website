@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anoma Holdings Limited</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --navy: #0f1f3d;
+      --navy-light: #1a3260;
+      --gold: #b8965a;
+      --gold-light: #d4af7a;
+      --off-white: #f8f6f1;
+      --text-dark: #1c1c1c;
+      --text-mid: #5a5a5a;
+      --text-light: #8a8a8a;
+      --border: rgba(15,31,61,0.12);
+    }
+
+    body { font-family: 'DM Sans', sans-serif; background: var(--off-white); color: var(--text-dark); }
+
+    /* NAV */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.5rem 4rem; background: var(--off-white);
+      border-bottom: 0.5px solid var(--border); position: sticky; top: 0; z-index: 100;
+    }
+    .logo { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 1.35rem; letter-spacing: 0.04em; color: var(--navy); }
+    .logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-mid); text-decoration: none; }
+    .nav-links a:hover { color: var(--navy); }
+
+    /* HERO */
+    .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 88vh; background: var(--off-white); }
+    .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 5rem 4rem; border-right: 0.5px solid var(--border); }
+    .hero-eyebrow { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+    .hero-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(2.6rem, 4vw, 3.8rem); line-height: 1.15; color: var(--navy); margin-bottom: 1.75rem; }
+    .hero-body { font-size: 0.95rem; line-height: 1.85; color: var(--text-mid); max-width: 420px; margin-bottom: 3rem; }
+    .hero-stat-row { display: flex; gap: 2.5rem; }
+    .stat { border-left: 1px solid var(--gold); padding-left: 1rem; }
+    .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 400; color: var(--navy); }
+    .stat-label { font-size: 0.72rem; letter-spacing: 0.08em; color: var(--text-light); margin-top: 2px; }
+    .hero-right { background: var(--navy); display: flex; flex-direction: column; justify-content: flex-end; padding: 4rem; position: relative; overflow: hidden; }
+    .hero-right::before { content: ''; position: absolute; top: -80px; right: -80px; width: 360px; height: 360px; border-radius: 50%; border: 0.5px solid rgba(184,150,90,0.2); }
+    .hero-right::after { content: ''; position: absolute; top: -20px; right: -20px; width: 220px; height: 220px; border-radius: 50%; border: 0.5px solid rgba(184,150,90,0.15); }
+    .hero-quote { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; color: rgba(255,255,255,0.92); line-height: 1.4; margin-bottom: 1.5rem; position: relative; z-index: 1; }
+    .hero-quote-attr { font-size: 0.75rem; letter-spacing: 0.1em; color: var(--gold-light); position: relative; z-index: 1; }
+
+    /* SECTIONS */
+    .section { padding: 5rem 4rem; border-top: 0.5px solid var(--border); }
+    .section-label { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 2.5rem; }
+
+    /* PHILOSOPHY */
+    .philosophy-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; }
+    .philosophy-card { padding: 2rem 1.75rem; border: 0.5px solid var(--border); background: white; }
+    .phil-num { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--navy); opacity: 0.2; margin-bottom: 1rem; line-height: 1; }
+    .phil-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 400; color: var(--navy); margin-bottom: 0.75rem; }
+    .phil-body { font-size: 0.88rem; line-height: 1.8; color: var(--text-mid); }
+
+    /* PORTFOLIO */
+    .portfolio-section { background: var(--navy); }
+    .portfolio-section .section-label { color: var(--gold-light); }
+    .portfolio-section .section-header { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300; color: white; margin-bottom: 2.5rem; }
+    .portfolio-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1px; background: rgba(255,255,255,0.08); }
+    .portfolio-cell { background: var(--navy); padding: 2.5rem 2rem; border-bottom: 0.5px solid rgba(255,255,255,0.07); }
+    .port-label { font-size: 0.7rem; letter-spacing: 0.15em; color: var(--gold-light); margin-bottom: 0.6rem; text-transform: uppercase; }
+    .port-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 300; color: white; margin-bottom: 0.6rem; }
+    .port-desc { font-size: 0.85rem; line-height: 1.7; color: rgba(255,255,255,0.5); }
+
+    /* NEWSLETTER */
+    .newsletter-section { background: white; }
+    .nl-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .nl-title { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 300; color: var(--navy); line-height: 1.2; margin-bottom: 1rem; }
+    .nl-body { font-size: 0.9rem; line-height: 1.85; color: var(--text-mid); }
+    .nl-form { display: flex; flex-direction: column; gap: 1rem; }
+    .nl-row { display: flex; gap: 0.75rem; }
+    .nl-input { flex: 1; padding: 0.85rem 1rem; border: 0.5px solid var(--border); background: var(--off-white); font-family: 'DM Sans', sans-serif; font-size: 0.88rem; color: var(--text-dark); outline: none; }
+    .nl-input::placeholder { color: var(--text-light); }
+    .nl-input:focus { border-color: var(--gold); }
+    .nl-btn { padding: 0.85rem 1.75rem; background: var(--navy); color: white; border: none; font-family: 'DM Sans', sans-serif; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; white-space: nowrap; }
+    .nl-btn:hover { background: var(--navy-light); }
+    .nl-note { font-size: 0.75rem; color: var(--text-light); margin-top: 0.25rem; }
+    .nl-topics { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; }
+    .topic-chip { font-size: 0.75rem; padding: 0.35rem 0.85rem; border: 0.5px solid var(--border); color: var(--text-mid); cursor: pointer; background: var(--off-white); user-select: none; }
+    .topic-chip.active { background: var(--navy); color: white; border-color: var(--navy); }
+    .nl-success { display: none; padding: 1.5rem; border: 0.5px solid rgba(184,150,90,0.4); background: rgba(184,150,90,0.06); text-align: center; }
+    .nl-success-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--navy); margin-bottom: 0.4rem; }
+    .nl-success-body { font-size: 0.9rem; color: var(--text-mid); }
+
+    /* FOOTER */
+    footer { padding: 2.5rem 4rem; border-top: 0.5px solid var(--border); display: flex; justify-content: space-between; align-items: center; background: var(--off-white); }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: var(--navy); font-weight: 300; }
+    .footer-copy { font-size: 0.75rem; color: var(--text-light); }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: 0.75rem; color: var(--text-light); text-decoration: none; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 1.25rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 3rem 1.5rem; border-right: none; border-bottom: 0.5px solid var(--border); }
+      .hero-right { padding: 3rem 1.5rem; min-height: 280px; }
+      .section { padding: 3rem 1.5rem; }
+      .philosophy-grid { grid-template-columns: 1fr; }
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .nl-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .nl-row { flex-direction: column; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">ANOMA <span>HOLDINGS</span> LIMITED</div>
+    <ul class="nav-links">
+      <li><a href="#philosophy">Philosophy</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#insights">Insights</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <p class="hero-eyebrow">Established · New Zealand</p>
+      <h1 class="hero-title">Capital Deployed<br>with Patience<br>&amp; Precision</h1>
+      <p class="hero-body">Anoma Holdings Limited is a private investment company focused on long-term value creation through disciplined allocation across equities and fixed income markets.</p>
+      <div class="hero-stat-row">
+        <div class="stat">
+          <div class="stat-num">3</div>
+          <div class="stat-label">Markets — NZ, AU &amp; US</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">2</div>
+          <div class="stat-label">Asset classes</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Proprietary capital</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <p class="hero-quote">"The stock market is a device for transferring money from the impatient to the patient."</p>
+      <p class="hero-quote-attr">— Warren Buffett</p>
+    </div>
+  </section>
+
+  <!-- PHILOSOPHY -->
+  <section class="section" id="philosophy">
+    <p class="section-label">Our philosophy</p>
+    <div class="philosophy-grid">
+      <div class="philosophy-card">
+        <div class="phil-num">01</div>
+        <h3 class="phil-title">Long-Term Orientation</h3>
+        <p class="phil-body">We invest with a multi-year horizon, looking past short-term volatility to focus on the intrinsic value of businesses and the durability of income streams.</p>
+      </div>
+      <div class="philosophy-card">
+        <div class="phil-num">02</div>
+        <h3 class="phil-title">Disciplined Allocation</h3>
+        <p class="phil-body">Capital is deployed deliberately across equities and bonds, with each position sized to reflect our conviction and the margin of safety available at the time of purchase.</p>
+      </div>
+      <div class="philosophy-card">
+        <div class="phil-num">03</div>
+        <h3 class="phil-title">Preservation First</h3>
+        <p class="phil-body">Protecting capital is the foundation of compounding. We prioritise avoiding permanent loss of capital above chasing short-term returns or market trends.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section class="section portfolio-section" id="portfolio">
+    <p class="section-label">What we invest in</p>
+    <p class="section-header">A focused, deliberate portfolio</p>
+    <div class="portfolio-grid">
+      <div class="portfolio-cell">
+        <p class="port-label">Equities</p>
+        <h3 class="port-title">Listed Stocks</h3>
+        <p class="port-desc">We seek high-quality businesses trading at reasonable valuations, with strong balance sheets and enduring competitive advantages.</p>
+      </div>
+      <div class="portfolio-cell">
+        <p class="port-label">Fixed Income</p>
+        <h3 class="port-title">Bonds &amp; Credit</h3>
+        <p class="port-desc">Government and corporate bonds provide income, stability and balance to the portfolio — particularly during periods of equity market uncertainty.</p>
+      </div>
+      <div class="portfolio-cell">
+        <p class="port-label">Geography</p>
+        <h3 class="port-title">New Zealand &amp; Global</h3>
+        <p class="port-desc">Our investments span New Zealand listed markets and select international opportunities where compelling risk-adjusted returns are available.</p>
+      </div>
+      <div class="portfolio-cell">
+        <p class="port-label">Approach</p>
+        <h3 class="port-title">Proprietary Capital Only</h3>
+        <p class="port-desc">Anoma Holdings invests solely on its own account. We do not manage funds or offer any investment services to third parties.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="section newsletter-section" id="insights">
+    <div class="nl-inner">
+      <div>
+        <p class="section-label">Insights</p>
+        <h2 class="nl-title">Market perspectives,<br>delivered monthly</h2>
+        <p class="nl-body">Subscribe to receive our monthly investment commentary — covering equity markets, fixed income conditions, and the ideas shaping our thinking. Thoughtful, timely, and never promotional.</p>
+      </div>
+      <div>
+        <div id="nl-form-wrap">
+          <form action="https://anomaholdings.us6.list-manage.com/subscribe/post?u=c9c059de2112e629c68090d91&amp;id=494305fc84&amp;f_id=00fbc2e1f0" method="post" target="_blank" onsubmit="handleSubscribe(event)">
+            <div class="nl-form">
+              <div class="nl-row">
+                <input class="nl-input" type="text" name="FNAME" placeholder="First name" />
+                <input class="nl-input" type="email" name="EMAIL" placeholder="Email address" required />
+              </div>
+              <div>
+                <p style="font-size:0.78rem;color:var(--text-light);margin-bottom:0.5rem;letter-spacing:0.04em;">Interests (optional)</p>
+                <div class="nl-topics">
+                  <span class="topic-chip active">Equities</span>
+                  <span class="topic-chip active">Fixed income</span>
+                  <span class="topic-chip">NZX</span>
+                  <span class="topic-chip">Global markets</span>
+                  <span class="topic-chip">Macro</span>
+                </div>
+              </div>
+              <!-- Mailchimp bot protection -->
+              <div style="position:absolute;left:-5000px;" aria-hidden="true">
+                <input type="text" name="b_c9c059de2112e629c68090d91_494305fc84" tabindex="-1" value="">
+              </div>
+              <div>
+                <button class="nl-btn" type="submit">Subscribe to insights</button>
+                <p class="nl-note">No spam, no third-party sharing. Unsubscribe anytime.</p>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="nl-success" id="nl-success">
+          <p class="nl-success-title">Thank you for subscribing.</p>
+          <p class="nl-success-body">You'll receive our next monthly insights edition in your inbox.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="contact">
+    <div class="footer-logo">Anoma Holdings Limited</div>
+    <div class="footer-copy">&copy; 2026 Anoma Holdings Limited. All rights reserved.</div>
+    <div class="footer-links">
+      <a href="#">Privacy policy</a>
+      <a href="#">Contact</a>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.topic-chip').forEach(function(chip) {
+      chip.addEventListener('click', function() { chip.classList.toggle('active'); });
+    });
+
+    function handleSubscribe(e) {
+      var email = e.target.querySelector('[name="EMAIL"]').value.trim();
+      if (!email || !email.includes('@')) {
+        e.preventDefault();
+        e.target.querySelector('[name="EMAIL"]').style.borderColor = '#c0392b';
+        return;
+      }
+      document.getElementById('nl-form-wrap').style.display = 'none';
+      document.getElementById('nl-success').style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>
