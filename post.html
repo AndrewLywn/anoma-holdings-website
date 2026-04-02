@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Insights — Anoma Holdings Limited</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --navy: #0f1f3d; --navy-light: #1a3260; --gold: #b8965a;
+      --gold-light: #d4af7a; --off-white: #f8f6f1; --text-dark: #1c1c1c;
+      --text-mid: #5a5a5a; --text-light: #8a8a8a; --border: rgba(15,31,61,0.12);
+    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--off-white); color: var(--text-dark); }
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 4rem; background: var(--off-white); border-bottom: 0.5px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    .logo { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 1.35rem; letter-spacing: 0.04em; color: var(--navy); text-decoration: none; }
+    .logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-mid); text-decoration: none; }
+    .nav-links a:hover { color: var(--navy); }
+    .article-wrap { max-width: 720px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+    .back-link { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); text-decoration: none; display: inline-block; margin-bottom: 3rem; }
+    .back-link:hover { color: var(--navy); }
+    .article-date { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-light); margin-bottom: 1rem; }
+    .article-title { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 300; color: var(--navy); line-height: 1.15; margin-bottom: 2.5rem; padding-bottom: 2.5rem; border-bottom: 0.5px solid var(--border); }
+    .article-body { font-size: 1rem; line-height: 1.9; color: var(--text-mid); }
+    .article-body h1, .article-body h2, .article-body h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; color: var(--navy); margin: 2rem 0 1rem; }
+    .article-body h2 { font-size: 1.8rem; }
+    .article-body h3 { font-size: 1.4rem; }
+    .article-body p { margin-bottom: 1.5rem; }
+    .article-body strong { color: var(--text-dark); font-weight: 500; }
+    .article-body a { color: var(--gold); }
+    .article-body blockquote { border-left: 2px solid var(--gold); padding-left: 1.5rem; margin: 2rem 0; font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--navy); }
+    footer { padding: 2.5rem 4rem; border-top: 0.5px solid var(--border); display: flex; justify-content: space-between; align-items: center; background: var(--off-white); }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: var(--navy); font-weight: 300; }
+    .footer-copy { font-size: 0.75rem; color: var(--text-light); }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: 0.75rem; color: var(--text-light); text-decoration: none; }
+    @media (max-width: 768px) {
+      nav { padding: 1.25rem 1.5rem; } .nav-links { display: none; }
+      .article-wrap { padding: 2.5rem 1.5rem 4rem; }
+      .article-title { font-size: 2rem; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">ANOMA <span>HOLDINGS</span> LIMITED</a>
+  <ul class="nav-links">
+    <li><a href="/#philosophy">Philosophy</a></li>
+    <li><a href="/#portfolio">Portfolio</a></li>
+    <li><a href="/blog.html">Insights</a></li>
+    <li><a href="/#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="article-wrap">
+  <a href="/blog.html" class="back-link">&larr; Back to Insights</a>
+  <p class="article-date" id="article-date"></p>
+  <h1 class="article-title" id="article-title">Loading...</h1>
+  <div class="article-body" id="article-body"></div>
+</div>
+
+<footer>
+  <div class="footer-logo">Anoma Holdings Limited</div>
+  <div class="footer-copy">&copy; 2026 Anoma Holdings Limited. All rights reserved.</div>
+  <div class="footer-links">
+    <a href="#">Privacy policy</a>
+    <a href="/#contact">Contact</a>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/marked@9.1.6/marked.min.js"></script>
+<script>
+  async function loadPost() {
+    const params = new URLSearchParams(window.location.search);
+    const slug = params.get('slug');
+    if (!slug) { window.location.href = '/blog.html'; return; }
+    try {
+      const res = await fetch('/_posts/' + slug + '.md');
+      if (!res.ok) { window.location.href = '/blog.html'; return; }
+      const text = await res.text();
+      const fmMatch = text.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+      if (!fmMatch) return;
+      const fm = {};
+      fmMatch[1].split('\n').forEach(line => {
+        const [k, ...v] = line.split(':');
+        if (k) fm[k.trim()] = v.join(':').trim().replace(/^"|"$/g, '');
+      });
+      const body = fmMatch[2];
+      document.title = (fm.title || 'Insights') + ' — Anoma Holdings Limited';
+      document.getElementById('article-title').textContent = fm.title || '';
+      document.getElementById('article-date').textContent = fm.date ? new Date(fm.date).toLocaleDateString('en-NZ', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
+      document.getElementById('article-body').innerHTML = marked.parse(body);
+    } catch(e) { window.location.href = '/blog.html'; }
+  }
+  loadPost();
+</script>
+</body>
+</html>
