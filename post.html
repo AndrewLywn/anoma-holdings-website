@@ -82,7 +82,7 @@
     const slug = params.get('slug');
     if (!slug) { window.location.href = '/blog.html'; return; }
     try {
-      const res = await fetch('/_posts/' + slug + '.md');
+      const res = await fetch('https://raw.githubusercontent.com/AndrewLywn/anoma-holdings-website/main/_posts/' + slug + '.md');
       if (!res.ok) { window.location.href = '/blog.html'; return; }
       const text = await res.text();
       const fmMatch = text.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
